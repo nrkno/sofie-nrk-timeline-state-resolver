@@ -27,16 +27,16 @@ export interface KairosCommandWithContext extends CommandWithContext {
  */
 export class KairosDevice extends Device<KairosOptions, KairosDeviceState, KairosCommandWithContext> {
 	private readonly _kairos: KairosConnection
-	readonly actions: Record<string, (id: string, payload?: Record<string, any>) => Promise<ActionExecutionResult>>
+	private readonly _kairosRamLoader: KairosRamLoader
 
-	public kairosRamLoader: KairosRamLoader
+	readonly actions: Record<string, (id: string, payload?: Record<string, any>) => Promise<ActionExecutionResult>>
 
 	constructor(context: DeviceContextAPI<KairosDeviceState>) {
 		super(context)
 
 		this._kairos = new KairosConnection()
+		this._kairosRamLoader = new KairosRamLoader(this._kairos, context)
 		this.actions = getActions(this._kairos) as any // Type safety is hard in the r52 api..
-		this.kairosRamLoader = new KairosRamLoader(this._kairos, context)
 	}
 
 	/**
@@ -141,7 +141,7 @@ export class KairosDevice extends Device<KairosOptions, KairosDeviceState, Kairo
 		if (!this.connected) return
 
 		try {
-			await sendCommand(this, this._kairos, command.command)
+			await sendCommand(this._kairos, this._kairosRamLoader, command.command)
 		} catch (error: any) {
 			this.context.commandError(error, command)
 		}
