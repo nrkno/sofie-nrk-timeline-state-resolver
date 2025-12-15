@@ -14,14 +14,19 @@
 					"ui:description": "The Scene to use",
 					"ui:summaryTitle": "Scene",
 					"ui:displayType": "breadcrumbs",
-					"default": [
-						"Main"
-					]
+					"default": ["Main"]
+				},
+				"temporalPriority": {
+					"type": "number",
+					"ui:title": "Temporal Priority",
+					"ui:description": "The temporal priority of the scene (higher number = higher priority). Objects for this scene will be given this priority when determining the command sending order, and any other changes needed for this to show correctly will be ordered around this.",
+					"ui:summaryTitle": "Temporal Priority",
+					"ui:displayType": "breadcrumbs",
+					"default": 0,
+					"min": 0
 				}
 			},
-			"required": [
-				"sceneName"
-			],
+			"required": ["sceneName"],
 			"additionalProperties": false
 		},
 		"scene-layer": {
@@ -36,9 +41,7 @@
 					"ui:description": "The Scene to use",
 					"ui:summaryTitle": "Scene",
 					"ui:displayType": "breadcrumbs",
-					"default": [
-						"Main"
-					]
+					"default": ["Main"]
 				},
 				"layerName": {
 					"type": "array",
@@ -49,15 +52,10 @@
 					"ui:description": "The layer in a scene to use",
 					"ui:summaryTitle": "Layer",
 					"ui:displayType": "breadcrumbs",
-					"default": [
-						"Background"
-					]
+					"default": ["Background"]
 				}
 			},
-			"required": [
-				"sceneName",
-				"layerName"
-			],
+			"required": ["sceneName", "layerName"],
 			"additionalProperties": false
 		},
 		"aux": {
@@ -72,9 +70,7 @@
 					"default": "IP-AUX1"
 				}
 			},
-			"required": [
-				"auxName"
-			],
+			"required": ["auxName"],
 			"additionalProperties": false
 		},
 		"macro": {
@@ -113,9 +109,7 @@
 					"default": false
 				}
 			},
-			"required": [
-				"playerId"
-			],
+			"required": ["playerId"],
 			"additionalProperties": false
 		},
 		"ram-rec-player": {
@@ -148,9 +142,7 @@
 					"default": false
 				}
 			},
-			"required": [
-				"playerId"
-			],
+			"required": ["playerId"],
 			"additionalProperties": false
 		},
 		"image-store": {
@@ -174,9 +166,7 @@
 					"default": false
 				}
 			},
-			"required": [
-				"playerId"
-			],
+			"required": ["playerId"],
 			"additionalProperties": false
 		},
 		"sound-player": {
@@ -209,9 +199,7 @@
 					"default": false
 				}
 			},
-			"required": [
-				"playerId"
-			],
+			"required": ["playerId"],
 			"additionalProperties": false
 		}
 	}

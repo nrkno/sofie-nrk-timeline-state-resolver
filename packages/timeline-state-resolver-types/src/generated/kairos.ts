@@ -19,6 +19,7 @@ export interface KairosOptions {
 
 export interface MappingKairosScene {
 	sceneName: string[]
+	temporalPriority?: number
 	mappingType: MappingKairosType.Scene
 }
 
