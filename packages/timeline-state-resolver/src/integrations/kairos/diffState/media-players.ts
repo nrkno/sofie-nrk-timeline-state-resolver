@@ -1,13 +1,13 @@
 import { MediaClipRef, MediaRamRecRef, MediaSoundRef } from 'kairos-connection'
 import { TimelineObjectInstance } from 'superfly-timeline'
 import { TimelineContentKairosPlayerState } from 'timeline-state-resolver-types'
-import { KairosCommandWithContext } from '..'
-import {
+import type {
 	KairosClipPlayerCommand,
 	KairosRamRecPlayerCommand,
 	KairosSoundPlayerCommand,
 	KairosPlayerCommandMethod,
 	KairosImageStoreCommand,
+	KairosCommandWithContext,
 } from '../commands'
 import { KairosDeviceState, MappingOptions } from '../stateBuilder'
 import { diffObjectBoolean, getAllKeysString } from './lib'

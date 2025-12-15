@@ -18,6 +18,12 @@ import {
 import { assertNever } from '../../lib'
 import { isEqual } from 'underscore'
 import type { KairosRamLoader } from './lib/kairosRamLoader'
+import type { CommandWithContext } from '../../service/device'
+
+export interface KairosCommandWithContext extends CommandWithContext {
+	command: KairosCommandAny
+	context: string
+}
 
 export type KairosCommandAny =
 	| KairosSceneCommand

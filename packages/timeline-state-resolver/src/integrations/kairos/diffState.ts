@@ -1,7 +1,7 @@
 import type { SomeMappingKairos, Mappings } from 'timeline-state-resolver-types'
 import { KairosMacroActiveState } from 'timeline-state-resolver-types'
 import { KairosStateBuilder, type KairosDeviceState } from './stateBuilder'
-import type { KairosCommandWithContext } from '.'
+import type { KairosCommandWithContext } from './commands'
 // eslint-disable-next-line node/no-missing-import
 import { UpdateSceneLayerObject, UpdateSceneObject, UpdateAuxObject } from 'kairos-connection'
 

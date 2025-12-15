@@ -12,15 +12,11 @@ import {
 import { KairosConnection } from 'kairos-connection'
 import { KairosDeviceState, KairosStateBuilder } from './stateBuilder'
 import { diffKairosStates } from './diffState'
-import { sendCommand, type KairosCommandAny } from './commands'
+import { sendCommand, type KairosCommandWithContext } from './commands'
 import { getActions } from './actions'
-import { CommandWithContext, Device, DeviceContextAPI } from '../../service/device'
+import { Device, DeviceContextAPI } from '../../service/device'
 import { KairosRamLoader } from './lib/kairosRamLoader'
-
-export interface KairosCommandWithContext extends CommandWithContext {
-	command: KairosCommandAny
-	context: string
-}
+import { sortCommandsByTemporalOrder } from './temporalOrder'
 
 /**
  * This is a wrapper for the Kairos Device. Commands to any and all kairos devices will be sent through here.
@@ -131,7 +127,8 @@ export class KairosDevice extends Device<KairosOptions, KairosDeviceState, Kairo
 		// Skip diffing if not connected, a resolverReset will be fired upon reconnection
 		if (!this.connected) return []
 
-		return diffKairosStates(oldKairosState, newKairosState, mappings)
+		const commands = diffKairosStates(oldKairosState, newKairosState, mappings)
+		return sortCommandsByTemporalOrder(mappings, newKairosState, commands)
 	}
 
 	async sendCommand(command: KairosCommandWithContext): Promise<void> {
