@@ -5,7 +5,7 @@ import {
 	SomeMappingKairos,
 	TimelineContentTypeKairos,
 } from 'timeline-state-resolver-types'
-import { KairosCommandWithContext } from '..'
+import { KairosCommandWithContext } from '../commands'
 import { diffKairosStates } from '../diffState'
 import { KairosDeviceState, KairosStateBuilder } from '../stateBuilder'
 import { tlObjectInstance } from './lib'
