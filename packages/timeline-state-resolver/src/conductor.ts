@@ -9,8 +9,8 @@ import {
 import { EventEmitter } from 'eventemitter3'
 import { MemUsageReport, threadedClass, ThreadedClass, ThreadedClassManager } from 'threadedclass'
 import PQueue from 'p-queue'
-import * as PAll from 'p-all'
 import PTimeout from 'p-timeout'
+import PAll from 'p-all'
 
 import {
 	Mappings,
@@ -59,6 +59,7 @@ import { DeviceOptionsVMixInternal } from './integrations/vmix'
 import { DeviceOptionsVizMSEInternal } from './integrations/vizMSE'
 import { BaseRemoteDeviceIntegration } from './service/remoteDeviceInstance'
 import { ConnectionManager } from './service/ConnectionManager'
+import { DeviceOptionsKairos } from 'timeline-state-resolver-types/src'
 
 export { DeviceContainer }
 export { CommandWithContext }
@@ -1218,6 +1219,7 @@ export type DeviceOptionsAnyInternal =
 	| DeviceOptionsTelemetrics
 	| DeviceOptionsTriCaster
 	| DeviceOptionsViscaOverIP
+	| DeviceOptionsKairos
 
 function removeParentFromState(
 	o: Timeline.TimelineState<TSRTimelineContent>
