@@ -51,7 +51,7 @@ export function convertTimelineStateToLawoState(
 	//   triggerValue
 
 	for (const layer of Object.values<Timeline.ResolvedTimelineObjectInstance<TSRTimelineContent>>(state.layers)) {
-		const mapping = mappings[layer.layer]
+		const mapping = mappings[layer.layer] as Mapping<unknown> | undefined
 		if (!mapping || mapping.device !== DeviceType.LAWO) continue
 
 		if (layer.content.deviceType !== DeviceType.LAWO) continue
@@ -81,8 +81,8 @@ export function convertTimelineStateToLawoState(
 
 function pushFaders(state: LawoState, timelineObjId: string, layer: TimelineContentLawoSources, mappings: Mappings) {
 	for (const source of layer.sources) {
-		const mapping = mappings[source.mappingName]
-		if (mapping.device !== DeviceType.LAWO) continue
+		const mapping = mappings[source.mappingName] as Mapping<MappingLawoSource> | undefined
+		if (mapping?.device !== DeviceType.LAWO) continue
 
 		pushFader(
 			state,
@@ -93,7 +93,7 @@ function pushFaders(state: LawoState, timelineObjId: string, layer: TimelineCont
 				...source,
 				overridePriority: layer.overridePriority,
 			},
-			mapping as Mapping<MappingLawoSource>
+			mapping
 		)
 	}
 }

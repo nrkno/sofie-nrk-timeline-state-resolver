@@ -67,7 +67,7 @@ export function convertTimelineStateToHyperdeckState(
 	for (const { tlObject, layerName } of sortedLayers) {
 		const content = tlObject.content
 
-		const mapping = mappings[layerName] as Mapping<SomeMappingHyperdeck>
+		const mapping = mappings[layerName] as Mapping<SomeMappingHyperdeck> | undefined
 		if (!mapping || content.deviceType !== DeviceType.HYPERDECK) continue
 
 		if (

@@ -399,7 +399,7 @@ export class CasparCGDevice extends DeviceWithState<State, DeviceOptionsCasparCG
 			})
 		} else if (content.type === TimelineContentTypeCasparCg.ROUTE) {
 			if (content.mappedLayer) {
-				const routeMapping = mappings[content.mappedLayer] as Mapping<SomeMappingCasparCG>
+				const routeMapping = mappings[content.mappedLayer] as Mapping<SomeMappingCasparCG> | undefined
 				if (routeMapping && routeMapping.deviceId === this.deviceId) {
 					content.channel = routeMapping.options.channel
 					content.layer = routeMapping.options.layer

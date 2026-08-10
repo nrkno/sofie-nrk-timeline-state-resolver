@@ -92,7 +92,7 @@ function getMappingForLayer(
 	foundMapping: Mapping<MappingQuantelPort> | undefined
 	isLookahead: boolean
 } {
-	let foundMapping = mappings[layerName]
+	let foundMapping = mappings[layerName] as Mapping<SomeMappingQuantel> | undefined
 
 	let isLookahead = false
 	if (!foundMapping && layerExt.isLookahead && layerExt.lookaheadForLayer) {

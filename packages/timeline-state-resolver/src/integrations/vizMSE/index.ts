@@ -351,7 +351,7 @@ export class VizMSEDevice extends DeviceWithState<VizMSEState, DeviceOptionsVizM
 
 		_.each(timelineState.layers, (layer, layerName: string) => {
 			const layerExt: ResolvedTimelineObjectInstanceExtended = layer
-			let foundMapping = mappings[layerName] as Mapping<SomeMappingVizMSE>
+			let foundMapping = mappings[layerName] as Mapping<SomeMappingVizMSE> | undefined
 
 			let isLookahead = false
 			if (!foundMapping && layerExt.isLookahead && layerExt.lookaheadForLayer) {
