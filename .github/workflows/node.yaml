@@ -101,17 +101,6 @@ jobs:
           yarn unitci
         env:
           CI: true
-      - name: Send coverage
-        if: matrix.node-version == '16.x'
-        uses: codecov/codecov-action@v5
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-      # - name: Check docs generation
-      #   if: matrix.node-version == '16.x'
-      #   run: |
-      #     yarn docs:test
-      #   env:
-      #     CI: true
 
   release:
     name: Release
