@@ -10,6 +10,8 @@ on:
 
 permissions:
   contents: read
+  pages: write
+  id-token: write
 
 jobs:
   lint:
@@ -173,11 +175,14 @@ jobs:
         if: ${{ steps.do-publish.outputs.tag }} == 'latest'
         run: |
           yarn docs
-      - name: Publish docs
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Upload docs files as artifact
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
+          path: ./docs
+      - name: Publish docs
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
   validate-dependencies:
     name: Validate production dependencies
