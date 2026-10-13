@@ -10,9 +10,12 @@ on:
         description: Regex of tags to ignore
       simulation:
         type: boolean
-        description: Simulate a run (don't delete tags)  
+        description: Simulate a run (don't delete tags)
   schedule:
-    - cron: '0 0 * * 0'
+    - cron: "0 0 * * 0"
+
+permissions:
+  contents: write
 
 jobs:
   prune-tags:
@@ -21,14 +24,14 @@ jobs:
     timeout-minutes: 15
     steps:
       - name: Checkout repo with all tags
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          fetch-depth: 0    
+          fetch-depth: 0
           persist-credentials: false
 
       - name: Prune tags (scheduled)
         if: github.event_name == 'schedule'
-        uses: nrkno/sofie-github-workflows/.github/actions/tag-pruner@tag-pruner-v1
+        uses: nrkno/sofie-nrk-github-workflows/.github/actions/tag-pruner@745e7d92d46ab3873739c51e6ac5ab158c941851
         with:
           older-than: 30
           ignore: '[0-9]+\.[0-9]+\.[0-9]+.*'
@@ -36,8 +39,8 @@ jobs:
 
       - name: Prune tags (manual)
         if: github.event_name == 'workflow_dispatch'
-        uses: nrkno/sofie-github-workflows/.github/actions/tag-pruner@tag-pruner-v1
+        uses: nrkno/sofie-nrk-github-workflows/.github/actions/tag-pruner@745e7d92d46ab3873739c51e6ac5ab158c941851
         with:
           older-than: ${{ github.event.inputs.older-than }}
           ignore: ${{ github.event.inputs.ignore }}
-          simulation: ${{ github.event.inputs.simulation }}       
+          simulation: ${{ github.event.inputs.simulation }}
